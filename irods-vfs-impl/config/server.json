@@ -9,13 +9,13 @@
 
     "irods_client": {
         "zone": "tempZone",
-        "host": "<hostname>",
+        "host": "192.168.33.11",
         "port": 1247,
         "default_resource": "demoResc",
         "ssl_negotiation_policy": "CS_NEG_REFUSE",
         "proxy_admin_account": {
-            "username": "<username>",
-            "password": "<password>"
+            "username": "rods",
+            "password": "admin"
         }
     }
 }
