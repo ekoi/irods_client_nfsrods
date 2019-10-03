@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update && \
-    apt-get install -y apt-transport-https maven git openjdk-8-jdk \
+    apt-get install -y apt-transport-https curl telnet maven git openjdk-8-jdk \
                        ninja-build less vim wget lsb-release gcc g++ python
 
 RUN wget -qO - https://packages.irods.org/irods-signing-key.asc | apt-key add -; \
@@ -10,7 +10,7 @@ RUN wget -qO - https://packages.irods.org/irods-signing-key.asc | apt-key add -;
     apt-get install -y irods-dev irods-externals-cmake3.11.4-0
 
 ENV PATH=/opt/irods-externals/cmake3.11.4-0/bin:$PATH
-ENV NFSRODS_CONFIG_HOME=/nfsrods_config
+#ENV NFSRODS_CONFIG_HOME=/nfsrods_config
 
 ARG _github_account="ekoi"
 ARG _sha="master"
@@ -25,8 +25,9 @@ RUN mkdir _package && cd _package && \
     cmake -GNinja /irods_client_nfsrods && \
     cpack -G "DEB" && \
     dpkg -i irods*.deb
-
+ADD irods-vfs-impl/config nfsrods_config
 ADD start.sh /
 RUN chmod +x start.sh
 
-ENTRYPOINT ["./start.sh"]
+#ENTRYPOINT ["./start.sh"]
+CMD ["tail", "-f", "/dev/null"]
