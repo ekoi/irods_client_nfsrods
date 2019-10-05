@@ -17,9 +17,9 @@ ARG _sha="master"
 
 RUN git clone https://github.com/${_github_account}/irods_client_nfsrods
 
-#RUN cd irods_client_nfsrods && \
+RUN cd irods_client_nfsrods && \
 #    git checkout ${_sha} && \
-#    mvn clean install -Dmaven.test.skip=true
+    mvn clean install -Dmaven.test.skip=true
 
 RUN mkdir _package && cd _package && \
     cmake -GNinja /irods_client_nfsrods && \
