@@ -46,6 +46,8 @@ public class ServerMain
 
     public static void main(String[] args) throws JargonException
     {
+        log_.debug("START----");
+        System.out.println("+++++++++++++ START ");
         ServerConfig config = null;
 
         try
